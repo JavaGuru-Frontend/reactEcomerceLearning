@@ -1,0 +1,34 @@
+.categories {
+  margin-top: 2rem;
+}
+
+.categories h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.categories-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.category-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.category-item a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.category-item a:hover {
+  text-decoration: underline;
+}
