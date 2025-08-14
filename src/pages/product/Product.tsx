@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Product.css';
-import ProductCard from '../../components/ProductCard';
-import Categories from '../../components/Categories';
+import ProductCard from '../../components/ProductCard/ProductCard';
+import Categories from '../../components/Categories/Categories';
 
 interface Product {
   id: number;

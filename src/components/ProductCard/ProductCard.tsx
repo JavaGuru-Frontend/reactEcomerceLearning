@@ -1,5 +1,5 @@
 import './ProductCard.css';
-import BuyButton from './BuyButton';
+import BuyButton from '../BuyButton/BuyButton';
 
 interface ProductCardProps {
   name: string;
