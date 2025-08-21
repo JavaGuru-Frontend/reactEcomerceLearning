@@ -4,8 +4,9 @@
 
 .product-list {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .product-card {
@@ -29,4 +30,18 @@
 .product-price {
   font-weight: bold;
   color: #333;
+}
+
+.product-layout {
+  min-height: 100vh;
+}
+
+.product-sider {
+  background-color: #f0f2f5;
+  padding: 1rem;
+}
+
+.product-content {
+  padding: 2rem;
+  background-color: #fff;
 }
