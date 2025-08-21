@@ -4,7 +4,7 @@ import products from '../../data/productData';
 import ProductCard from '../../components/ProductCard';
 import Categories from '../../components/Category/Categories';
 import { useEffect, useState } from 'react';
-import { Button, Input, Select, Space } from 'antd';
+import {Input} from 'antd';
 
 interface Product {
 	id: 				number;
@@ -48,7 +48,7 @@ useEffect(() => {
   return (
     <div className="product-page">
       <h1>Products</h1>
-			<input
+			<Input placeholder
 				type="text"
 				placeholder="Search products..."
 				onChange={getSearchData}
