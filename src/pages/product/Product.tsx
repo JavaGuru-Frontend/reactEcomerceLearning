@@ -4,15 +4,17 @@ import products from '../../data/productData';
 import ProductCard from '../../components/ProductCard';
 import Categories from '../../components/Category/Categories';
 import { useEffect, useState } from 'react';
+import { Button, Input, Select, Space } from 'antd';
 
 interface Product {
-	id: number;
-	title: string;
-	description: string;
-	price: string;
+	id: 				number;
+	title: 			string;
+	description: 	string;
+	price: 			string;
 }
 
 function Product() {
+
 	const[products, setProducts] = useState([]);
 
 	const getProductData = (category: string) => {
@@ -21,29 +23,55 @@ function Product() {
 		.then((data) => {
 			setProducts(data.products);
 		}) 
+}
+	
+	const getSearchData = (event: React.ChangeEvent<HTMLInputElement>) => {
+			console.log(event.target.value)
+
+			fetch(`https://dummyjson.com/products/search?q=${event.target.value}`)
+			.then(res => res.json())
+			.then((data) => {
+				setProducts(data.products);
+			})
+			.catch((error) => {
+				console.error('Error fetching search data:', error);
+			}
+		);
 	}
 	
-	useEffect(() => {
-		getProductData('smartphones'); // Fetch smartphones 
-	}, []);
+		
+
+useEffect(() => {
+	getProductData('smartphones'); // Fetch smartphones 
+}, []);
 
   return (
     <div className="product-page">
       <h1>Products</h1>
+			<input
+				type="text"
+				placeholder="Search products..."
+				onChange={getSearchData}
+			/>
 		<Categories 
 			title="Categories"
 			onCategoryClick={getProductData}
 		/>
 
       <div className="product-list">
-        {products.map((product: Product) => (
-          <ProductCard
-            key={product.id}
-            name={product.title}
-            description={product.description}
-            price={product.price}
-          />
-        ))}
+			{ products.length === 0 ? (
+				<span>no products</span>
+			)	: ( 
+				products.map((product: Product) => (
+					<ProductCard
+					  key={product.id}
+					  name={product.title}
+					  description={product.description}
+					  price={product.price}
+					/>
+				))
+				)
+				}
       </div>
     </div>
   );
