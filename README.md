@@ -1,0 +1,1 @@
+zeka bil zdes
