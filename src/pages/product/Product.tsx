@@ -48,8 +48,7 @@ useEffect(() => {
   return (
     <div className="product-page">
       <h1>Products</h1>
-			<Input placeholder
-				type="text"
+			<Input className='input' placeholder="Primary"
 				placeholder="Search products..."
 				onChange={getSearchData}
 			/>

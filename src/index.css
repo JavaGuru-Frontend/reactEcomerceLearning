@@ -1,0 +1,17 @@
+:root {
+	--bodyColor: #ffffff;
+	--primary-color: #0a0a0a;
+	--box-color: #f7f7f7;
+	--grey: #575757;
+	--border-radius: 10px;
+	h1 {
+		font-size: var(--text-3xl);
+	 }
+	h2 {
+		font-size: var(--text-xl);
+	 }
+	h3 {
+		font-size: var(--text-lg);
+	 }
+}
+
