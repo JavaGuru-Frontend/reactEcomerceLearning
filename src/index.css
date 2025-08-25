@@ -5,7 +5,10 @@
 	--grey: #575757;
 	--border-radius: 10px;
 	h1 {
-		font-size: var(--text-3xl);
+		font-size: var(--text-xl);
+		font-weight: 600;
+		margin-bottom: 1em;
+		margin-top: 1em;
 	 }
 	h2 {
 		font-size: var(--text-xl);
@@ -13,5 +16,6 @@
 	h3 {
 		font-size: var(--text-lg);
 	 }
+
 }
 

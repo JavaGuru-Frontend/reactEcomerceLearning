@@ -4,7 +4,7 @@ import products from '../../data/productData';
 import ProductCard from '../../components/ProductCard';
 import Categories from '../../components/Category/Categories';
 import { useEffect, useState } from 'react';
-import {Input} from 'antd';
+import Input from '../../components/Input/input';
 
 interface Product {
 	id: 				number;
@@ -47,32 +47,41 @@ useEffect(() => {
 
   return (
     <div className="product-page">
-      <h1>Products</h1>
-			<Input className='input' placeholder="Primary"
-				placeholder="Search products..."
-				onChange={getSearchData}
-			/>
-		<Categories 
-			title="Categories"
-			onCategoryClick={getProductData}
-		/>
-
-      <div className="product-list">
-			{ products.length === 0 ? (
-				<span>no products</span>
-			)	: ( 
-				products.map((product: Product) => (
-					<ProductCard
-					  key={product.id}
-					  name={product.title}
-					  description={product.description}
-					  price={product.price}
-					/>
-				))
-				)
-				}
-      </div>
-    </div>
+		<div className="container">
+			<div className="row">
+				<div className='col-lg3'>
+						<Input 
+						type="Search"
+						placeholder='Search products...'
+						onChange={getSearchData}					
+						/>
+						<div className="wrapper">
+						<Categories 
+							title="Product Categories"
+							onCategoryClick={getProductData}
+						/>
+					</div>
+				</div>
+			<div className='col-lg9'>
+     			 <div className="row">
+						{ products.length === 0 ? (
+							<span>no products</span>
+							)	: ( 
+							products.map((product: Product) => (
+								<ProductCard
+									key={product.id}
+									name={product.title}
+									description={product.description}
+									price={product.price}
+								/>
+								))
+							)
+						}
+			</div>
+		</div>
+	</div>
+</div>
+</div>
   );
 }
 

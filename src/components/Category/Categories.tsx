@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Categories.css"; 
 
 interface CategoriesProps {
 	onCategoryClick: (category: string) => void;
@@ -23,22 +24,26 @@ function Categories({onCategoryClick, title}: CategoriesProps) {
 }, []);
 
 if (loading) {	
-	return <div>Loading...</div>;
+	return <span className="loading loading-dots loading-lg"></span>;
 }
 
 
   return (
-	<ul>
-		{title && <h2>{title}</h2>}
+	<ul className="menu bg-base-200 rounded-box w-56">
+		{title && <li className="menu-title">{title}</li>}
 		{categories.map((category: string) => (
-			<li 
+	
+		<li className="wide"><a className="wide"
 				key={category}
 				onClick={() => onCategoryClick(category)}
 			>
 				{category}
+				</a> 
 			</li>
+		
 		))}
 	</ul>
+
 	
   )
 
