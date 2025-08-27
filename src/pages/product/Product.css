@@ -20,24 +20,20 @@
 .row{
 	display: flex;
 		 flex-wrap: wrap;
-		 margin-right: -15px;
-		 margin-left: -15px;
+     gap: 1rem;
 }
 
 .col-lg3{
-	flex: 0 0 25%;
-	max-width: 25%;
+	flex: 0 0 24%;
+	max-width: 24%;
 	padding-right: 4em;
 }
 
 .col-lg9{
-	flex: 0 0 75%;
-	max-width: 75%;
+	flex: 0 0 74%;
+	max-width: 74%;
 	position: relative;
 	width: 100%;
-	padding-right: 1em;
-	padding-top: 1em;
-	padding-left: 1em;
 }
 
 .product-list {

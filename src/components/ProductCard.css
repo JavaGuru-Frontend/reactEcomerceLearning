@@ -20,3 +20,6 @@
   font-weight: bold;
   color: #333;
 }
+.justify-end {
+  justify-content: end;
+}

@@ -11,6 +11,7 @@ interface Product {
 	title: 			string;
 	description: 	string;
 	price: 			string;
+	thumbnail: 	string;
 }
 
 function Product() {
@@ -73,6 +74,7 @@ useEffect(() => {
 									name={product.title}
 									description={product.description}
 									price={product.price}
+									thumbnail={product.thumbnail}
 								/>
 								))
 							)

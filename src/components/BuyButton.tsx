@@ -6,8 +6,8 @@ interface BuyButtonProps {
 
 function BuyButton({ onClick }: BuyButtonProps) {
   return (
-    <button className="buy-button" onClick={onClick}>
-      Buy
+    <button className="btn btn-primary" onClick={onClick}>
+      Buy Now
     </button>
   );
 }

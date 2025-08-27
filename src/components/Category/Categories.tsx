@@ -29,7 +29,7 @@ if (loading) {
 
 
   return (
-	<ul className="menu bg-base-200 rounded-box w-56">
+	<ul className="menu bg-base-200 rounded-box w-56 wide">
 		{title && <li className="menu-title">{title}</li>}
 		{categories.map((category: string) => (
 	
