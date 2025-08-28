@@ -1,0 +1,34 @@
+import { Input } from 'antd';
+import { useState } from 'react';
+import './SearchInput.css';
+
+interface SearchInputProps {
+  onSearch: (query: string) => void;
+  placeholder?: string;
+}
+
+function SearchInput({ onSearch, placeholder = 'Search...' }: SearchInputProps) {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchTerm(query);
+
+    if (query.length > 2) {
+      onSearch(query);
+    } else {
+      onSearch(''); // Clear results if query is too short
+    }
+  };
+
+  return (
+    <Input
+      placeholder={placeholder}
+      value={searchTerm}
+      onChange={handleInputChange}
+      style={{ width: '100%', maxWidth: '400px', margin: '0 auto 2rem', display: 'block' }}
+    />
+  );
+}
+
+export default SearchInput;

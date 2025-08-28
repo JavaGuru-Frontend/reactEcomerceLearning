@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Input, Spin, Layout } from 'antd';
+import { Spin, Layout, Button } from 'antd';
 import './Product.css';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Categories from '../../components/Categories/Categories';
+// import SearchInput from '../../components/SearchInput/SearchInput';
 
 const { Sider, Content } = Layout;
 
@@ -12,12 +13,13 @@ interface Product {
   price: number;
   description: string;
   thumbnail: string;
+  quantity?: number;
 }
 
 function Product() {
-  const [searchTerm, setSearchTerm] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   const fetchProductsByCategory = (category: string) => {
     setLoading(true);
@@ -33,29 +35,42 @@ function Product() {
       });
   };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setSearchTerm(query);
+  // const handleSearch = (query: string) => {
+  //   if (query) {
+  //     setLoading(true);
+  //     fetch(`https://dummyjson.com/products/search?q=${query}`)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setProducts(data.products);
+  //         setLoading(false);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error fetching products:', error);
+  //         setLoading(false);
+  //       });
+  //   } else {
+  //     setProducts([]);
+  //   }
+  // };
 
-    if (query.length > 2) {
-      setLoading(true);
-      fetch(`https://dummyjson.com/products/search?q=${query}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setProducts(data.products);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error('Error fetching products:', error);
-          setLoading(false);
-        });
+  const handleAddToCart = (product: Product) => {
+    const existingProduct = selectedProducts.find((p) => p.id === product.id);
+    if (existingProduct) {
+      setSelectedProducts((prev) =>
+        prev.map((p) =>
+          p.id === product.id ? { ...p, quantity: (p.quantity || 1) + 1 } : p
+        )
+      );
     } else {
-      setProducts([]);
+      setSelectedProducts((prev) => [...prev, { ...product, quantity: 1 }]);
     }
+    localStorage.setItem(
+      'selectedProducts',
+      JSON.stringify([...selectedProducts, { ...product, quantity: 1 }])
+    );
   };
 
   useEffect(() => {
-    // Fetch default category products (e.g., "smartphones") on initial load
     fetchProductsByCategory('smartphones');
   }, []);
 
@@ -67,24 +82,27 @@ function Product() {
       </Sider>
       <Content className="product-content">
         <h1>Product Search</h1>
-        <Input
-          placeholder="Search for products..."
-          value={searchTerm}
-          onChange={handleSearch}
-          style={{ width: '100%', maxWidth: '400px', margin: '0 auto 2rem', display: 'block' }}
-        />
+        {/* <SearchInput onSearch={handleSearch} placeholder="Search for products..." /> */}
         {loading ? (
           <Spin tip="Loading..." />
         ) : (
           <div className="product-list">
             {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                name={product.title}
-                description={product.description}
-                price={`$${product.price}`}
-                thumbnail={product.thumbnail}
-              />
+              <div key={product.id}>
+                <ProductCard
+                  name={product.title}
+                  description={product.description}
+                  price={`$${product.price}`}
+                  thumbnail={product.thumbnail}
+                />
+                <Button
+                  type="primary"
+                  onClick={() => handleAddToCart(product)}
+                  style={{ marginTop: '1rem' }}
+                >
+                  Add to Cart
+                </Button>
+              </div>
             ))}
           </div>
         )}

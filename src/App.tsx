@@ -3,6 +3,7 @@ import './App.css';
 import Home from './pages/home/Home';
 import About from './pages/about/About';
 import Product from './pages/product/Product';
+import Checkout from './pages/checkout/Checkout';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           <li>
             <Link to="/product">Products</Link>
           </li>
+          <li>
+            <Link to="/checkout">Checkout</Link>
+          </li>
         </ul>
       </nav>
       <main>
@@ -25,6 +29,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
     </Router>
