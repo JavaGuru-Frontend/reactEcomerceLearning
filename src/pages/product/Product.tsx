@@ -17,12 +17,14 @@ interface Product {
 function Product() {
 
 	const[products, setProducts] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	const getProductData = (category: string) => {
 		fetch(`https://dummyjson.com/products/category/${category}`)
 		.then(res => res.json())
 		.then((data) => {
 			setProducts(data.products);
+			setLoading(false);
 		}) 
 }
 	
@@ -32,7 +34,9 @@ function Product() {
 			fetch(`https://dummyjson.com/products/search?q=${event.target.value}`)
 			.then(res => res.json())
 			.then((data) => {
+
 				setProducts(data.products);
+				
 			})
 			.catch((error) => {
 				console.error('Error fetching search data:', error);
@@ -45,6 +49,10 @@ function Product() {
 useEffect(() => {
 	getProductData('smartphones'); // Fetch smartphones 
 }, []);
+
+if (loading) {	
+	return <span className="loading loading-dots loading-lg"></span>;
+}
 
   return (
     <div className="product-page">

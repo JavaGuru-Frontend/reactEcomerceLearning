@@ -1,6 +1,7 @@
 import './ProductCard.css';
 import BuyButton from './BuyButton';
 
+
 interface ProductCardProps {
   name: string;
   description: string;

@@ -1,32 +1,19 @@
-import { useEffect, useState } from "react";
+
 import "./Categories.css"; 
+import getCategoryData from "./getCategoryData";
+
 
 interface CategoriesProps {
 	onCategoryClick: (category: string) => void;
 	title: string;
 }
 
-
-function Categories({onCategoryClick, title}: CategoriesProps) {
-	const [categories, setCategories] = useState([]);
-	const [loading, setLoading] = useState(true);
-
-
-
-	useEffect(() => {
-		fetch('https://dummyjson.com/products/category-list')
-		.then(res => res.json())
-	.then((data) => {
-		setCategories(data);
-		console.log(categories);
-		setLoading(false);
-	});
-}, []);
+function Categories({title, onCategoryClick}: CategoriesProps) {
+	const {categories, loading } = getCategoryData();  // get category data from getCategoryData.tsx
 
 if (loading) {	
 	return <span className="loading loading-dots loading-lg"></span>;
 }
-
 
   return (
 	<ul className="menu bg-base-200 rounded-box w-56 wide">
@@ -50,3 +37,5 @@ if (loading) {
 }
 
 export default Categories;
+
+// export const 
